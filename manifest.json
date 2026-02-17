@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "Wolvesville Replay Manager",
+  "version": "1.1",
+  "description": "Manages game replays and logs general game events.",
+  "permissions": [
+    "scripting",
+    "storage",
+    "declarativeNetRequest"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "host_permissions": [
+    "*://game.api-wolvesville.com/*",
+    "*://www.wolvesville.com/*",
+    "https://wolvesville-tools.pages.dev/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://www.wolvesville.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["inject.js"],
+      "matches": ["*://www.wolvesville.com/*"]
+    }
+  ],
+    "browser_specific_settings": {
+    "gecko": {
+      "id": "extension@wolvesville-replay-manager.local",
+      "strict_min_version": "109.0"
+    }
+  }
+}
